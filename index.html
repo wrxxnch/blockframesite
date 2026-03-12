@@ -1,0 +1,739 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title _msttexthash="1840098" _msthash="0">BlockFrame - Advanced Construction Tool for Minetest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(100, 200, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #64c8ff 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #64c8ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #64c8ff 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #a0a0c0;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #64c8ff 0%, #00d4ff 100%);
+            color: #0f0f23;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(100, 200, 255, 0.3);
+        }
+
+        /* Features Section */
+        .features {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #64c8ff 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(30, 30, 60, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(100, 200, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(100, 200, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(100, 200, 255, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: #64c8ff;
+        }
+
+        .feature-card p {
+            color: #a0a0c0;
+            font-size: 0.95rem;
+        }
+
+        /* Videos Section */
+        .videos-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .video-card {
+            background: rgba(30, 30, 60, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(100, 200, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(100, 200, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(100, 200, 255, 0.1);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, rgba(100, 200, 255, 0.2) 0%, rgba(0, 212, 255, 0.1) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background: rgba(100, 200, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover .play-button {
+            background: rgba(100, 200, 255, 1);
+            transform: scale(1.1);
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #64c8ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-description {
+            color: #a0a0c0;
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .modal video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: rgba(100, 200, 255, 0.5);
+        }
+
+        /* Commands Section */
+        .commands-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .command-card {
+            background: rgba(30, 30, 60, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(100, 200, 255, 0.2);
+        }
+
+        .command-name {
+            font-family: 'JetBrains Mono', monospace;
+            color: #64c8ff;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            word-break: break-all;
+        }
+
+        .command-description {
+            color: #a0a0c0;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .command-args {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #00d4ff;
+            overflow-x: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 15, 35, 0.95);
+            border-top: 1px solid rgba(100, 200, 255, 0.2);
+            padding: 2rem;
+            text-align: center;
+            color: #a0a0c0;
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: #64c8ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #00d4ff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            .features,
+            .videos-section,
+            .commands-section {
+                padding: 3rem 1rem;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon" _msttexthash="1004276" _msthash="1">⬜</span><font _mstmutation="1" _msttexthash="148499" _msthash="2">
+                BlockFrame
+            </font></div>
+            <nav>
+                <a href="#features" _msttexthash="137904" _msthash="3">Resources</a>
+                <a href="#videos" _msttexthash="77389" _msthash="4">Videos</a>
+                <a href="#commands" _msttexthash="113425" _msthash="5">Commands</a>
+                <a href="#about" _msttexthash="60892" _msthash="6">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 _msttexthash="148499" _msthash="7">BlockFrame</h1>
+        <p _msttexthash="9016358" _msthash="8">Advanced build tool for Minetest/Mineclonia with real-time preview, precise transformations and interactive visual editor</p>
+        <button class="cta-button" onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})" _msttexthash="132561" _msthash="9"> View Demos </button>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title" _msttexthash="179712" _msthash="10">Key Features</h2>
+        <div class="features-grid">
+            <div class="feature-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="feature-icon" _msttexthash="18511090" _msthash="11">👁️</div>
+                <h3 _msttexthash="303693" _msthash="12">Real-Time Preview</h3>
+                <p _msttexthash="3977038" _msthash="13">Preview blocks and items before committing to the world using wielditem entities</p>
+            </div>
+            <div class="feature-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="feature-icon" _msttexthash="10916295" _msthash="14">📏</div>
+                <h3 _msttexthash="175422" _msthash="15">Custom Scale</h3>
+                <p _msttexthash="2828956" _msthash="16">Precisely adjust the size of objects in one, two, or three dimensions</p>
+            </div>
+            <div class="feature-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="feature-icon" _msttexthash="10921807" _msthash="17">🔄</div>
+                <h3 _msttexthash="314301" _msthash="18">Advanced Rotation</h3>
+                <p _msttexthash="2376946" _msthash="19">Rotate in degrees on the X, Y, and Z axes for perfect positioning</p>
+            </div>
+            <div class="feature-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="feature-icon" _msttexthash="10964538" _msthash="20">🪞</div>
+                <h3 _msttexthash="137592" _msthash="21">Mirroring</h3>
+                <p _msttexthash="1939509" _msthash="22">Mirror objects on the X, Y, or Z axes for perfect symmetry</p>
+            </div>
+            <div class="feature-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="feature-icon" _msttexthash="10916087" _msthash="23">📍</div>
+                <h3 _msttexthash="384202" _msthash="24">Precise Positioning</h3>
+                <p _msttexthash="3161821" _msthash="25">Place objects with absolute or relative coordinates with grid snapping</p>
+            </div>
+            <div class="feature-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="feature-icon" _msttexthash="10914527" _msthash="26">💾</div>
+                <h3 _msttexthash="117780" _msthash="27">Save &amp; Load</h3>
+                <p _msttexthash="2474004" _msthash="28">Save composite structures to .bf files and load them when needed</p>
+            </div>
+            <div class="feature-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="feature-icon" _msttexthash="7548203" _msthash="29">↩️</div>
+                <h3 _msttexthash="158964" _msthash="30">Undo System</h3>
+                <p _msttexthash="2352974" _msthash="31">Undo actions and restore deleted blocks with simple commands</p>
+            </div>
+            <div class="feature-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="feature-icon" _msttexthash="10992644" _msthash="32">🎮</div>
+                <h3 _msttexthash="347321" _msthash="33">Editor Visual Gizmo</h3>
+                <p _msttexthash="3486392" _msthash="34">Manipulate transformations directly in the world with interactive gizmos</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section class="videos-section" id="videos">
+        <h2 class="section-title" _msttexthash="424008" _msthash="35">Video Demonstrations</h2>
+        <div class="videos-grid">
+            <div class="video-card" onclick="openVideo('https://wrxxnch.github.io/blockframesite/main/demovids/blockframe.mp4')" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="video-thumbnail">
+                    <div class="play-button" _msttexthash="878514" _msthash="36">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title" _msttexthash="269685" _msthash="37">Basic BlockFrame</div>
+                    <div class="video-description" _msttexthash="502684" _msthash="38">Overview of key features</div>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="openVideo('https://wrxxnch.github.io/blockframesite/main/demovids/size.mp4')" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="video-thumbnail">
+                    <div class="play-button" _msttexthash="878514" _msthash="39">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title" _msttexthash="150917" _msthash="40">Scale (Size)</div>
+                    <div class="video-description" _msttexthash="662051" _msthash="41">Adjusting the size of objects</div>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="openVideo('https://wrxxnch.github.io/blockframesite/main/demovids/gizmos.mp4')" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="video-thumbnail">
+                    <div class="play-button" _msttexthash="878514" _msthash="42">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title" _msttexthash="176410" _msthash="43">Gizmos in All</div>
+                    <div class="video-description" _msttexthash="1068197" _msthash="44">Interactive visual editor in the world</div>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="openVideo('https://wrxxnch.github.io/blockframesite/main/demovids/gizmostep.mp4')" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="video-thumbnail">
+                    <div class="play-button" _msttexthash="878514" _msthash="45">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title" _msttexthash="134472" _msthash="46">Gizmo Step</div>
+                    <div class="video-description" _msttexthash="564252" _msthash="47">Dynamic Increment Control</div>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="openVideo('https://wrxxnch.github.io/blockframesite/main/demovids/applyargs.mp4')" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="video-thumbnail">
+                    <div class="play-button" _msttexthash="878514" _msthash="48">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title" _msttexthash="353028" _msthash="49">Applying Arguments</div>
+                    <div class="video-description" _msttexthash="730717" _msthash="50">How to Use Arguments Us Commands</div>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="openVideo('https://wrxxnch.github.io/blockframesite/main/demovids/saveload.mp4')" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="video-thumbnail">
+                    <div class="play-button" _msttexthash="878514" _msthash="51">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title" _msttexthash="117780" _msthash="52">Save &amp; Load</div>
+                    <div class="video-description" _msttexthash="504283" _msthash="53">Save and load structures</div>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="openVideo('https://wrxxnch.github.io/blockframesite/main/demovids/delradius.mp4')" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="video-thumbnail">
+                    <div class="play-button" _msttexthash="878514" _msthash="54">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title" _msttexthash="315926" _msthash="55">Delete with Radius</div>
+                    <div class="video-description" _msttexthash="835965" _msthash="56">Delete blocks in a specific radius</div>
+                </div>
+            </div>
+
+            <div class="video-card" onclick="openVideo('https://wrxxnch.github.io/blockframesite/main/demovids/undo.mp4')" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="video-thumbnail">
+                    <div class="play-button" _msttexthash="878514" _msthash="57">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title" _msttexthash="131248" _msthash="58">Undo (Undo)</div>
+                    <div class="video-description" _msttexthash="469872" _msthash="59">Undo and restore system</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commands Section -->
+    <section class="commands-section" id="commands">
+        <h2 class="section-title" _msttexthash="338806" _msthash="60">Available Commands</h2>
+        <div class="commands-grid">
+            <div class="command-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="command-name" _msttexthash="321464" _msthash="61">/blockframe &lt;args&gt;</div>
+                <div class="command-description" _msttexthash="1406561" _msthash="62">Creates or updates a preview of the item at hand</div>
+                <div class="command-args" _msttexthash="4237909" _msthash="63">size=x,y,z
+rotate=x,y,z
+mirror=x|y|z
+pos=x,y,z
+step=value
+collision=true|false</div>
+            </div>
+
+            <div class="command-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="command-name" _msttexthash="282841" _msthash="64">/blockframe_set</div>
+                <div class="command-description" _msttexthash="1987414" _msthash="65">Commits the active preview and puts the tile in the world</div>
+                <div class="command-args" _msttexthash="185588" _msthash="66">No arguments</div>
+            </div>
+
+            <div class="command-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="command-name" _msttexthash="368420" _msthash="67">/blockframe_cancel</div>
+                <div class="command-description" _msttexthash="459719" _msthash="68">Cancels active preview</div>
+                <div class="command-args" _msttexthash="185588" _msthash="69">No arguments</div>
+            </div>
+
+            <div class="command-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="command-name" _msttexthash="313053" _msthash="70">/blockframe_undo</div>
+                <div class="command-description" _msttexthash="650013" _msthash="71">Removes the last placed block</div>
+                <div class="command-args" _msttexthash="185588" _msthash="72">No arguments</div>
+            </div>
+
+            <div class="command-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="command-name" _msttexthash="609141" _msthash="73">/blockframe_del [radius=N]</div>
+                <div class="command-description" _msttexthash="977483" _msthash="74">Deletes BlockFrame blocks in a radius</div>
+                <div class="command-args" _msttexthash="292968" _msthash="75">radius=3
+radius=10</div>
+            </div>
+
+            <div class="command-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="command-name" _msttexthash="382798" _msthash="76">/blockframe_gizmos</div>
+                <div class="command-description" _msttexthash="1104545" _msthash="77">Enable/disable the visual gizmo editor</div>
+                <div class="command-args" _msttexthash="907231" _msthash="78">step=5
+step.move=0.25
+step.rotate=10</div>
+            </div>
+
+            <div class="command-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="command-name" _msttexthash="489879" _msthash="79">/blockframe_save &lt;name&gt;</div>
+                <div class="command-description" _msttexthash="599573" _msthash="80">Saves a structure to .bf file</div>
+                <div class="command-args" _msttexthash="2296255" _msthash="81">blockframe_save my_house
+blockframe_save castle radius=20</div>
+            </div>
+
+            <div class="command-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="command-name" _msttexthash="485771" _msthash="82">/blockframe_load &lt;name&gt;</div>
+                <div class="command-description" _msttexthash="465426" _msthash="83">Loads a saved structure</div>
+                <div class="command-args" _msttexthash="2095288" _msthash="84">blockframe_load my_house
+blockframe_load castle size=2</div>
+            </div>
+
+            <div class="command-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.5s, transform 0.5s;">
+                <div class="command-name" _msttexthash="309972" _msthash="85">/blockframe_help</div>
+                <div class="command-description" _msttexthash="404391" _msthash="86">Displays in-game help</div>
+                <div class="command-args" _msttexthash="185588" _msthash="87">No arguments</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="commands-section" id="about">
+        <h2 class="section-title" _msttexthash="273221" _msthash="88">About BlockFrame</h2>
+        <div style="background: rgba(30, 30, 60, 0.6); backdrop-filter: blur(10px); padding: 2rem; border-radius: 15px; border: 1px solid rgba(100, 200, 255, 0.2); max-width: 800px; margin: 0 auto;">
+            <p style="color: #a0a0c0; margin-bottom: 1rem;" _msttexthash="9567623" _msthash="89"> BlockFrame is a powerful tool for Minetest/Mineclonia designed for advanced builders, map creators, and technical experimenters. </p>
+            <p style="color: #a0a0c0; margin-bottom: 1rem;" _msttexthash="22195420" _msthash="90"> With its real-time preview system, precise transformations, and interactive visual editor, BlockFrame allows you to accurately visualize, transform, and place blocks before confirming into the world. </p>
+            <p style="color: #a0a0c0; margin-bottom: 1rem;">
+                <font _mstmutation="1" _msttexthash="1504620" _msthash="91"><strong style="color: #64c8ff;" _mstmutation="1">Licença:</strong> Creative Commons Attribution 3.0 (CC BY 3.0)
+            </font></p>
+            <p style="color: #a0a0c0;">
+                <font _mstmutation="1" _msttexthash="1401322" _msthash="92"><strong style="color: #64c8ff;" _mstmutation="1" _istranslated="1">Repository:</strong> <a href="https://github.com/wrxxnch/blockframe" target="_blank" style="color: #64c8ff; text-decoration: none;" _mstmutation="1" _istranslated="1">github.com/wrxxnch/blockframe</a></font>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p _msttexthash="1059812" _msthash="93">© 2024 BlockFrame. Developed by <a href="https://github.com/wrxxnch" target="_blank" _istranslated="1">wrxxnch</a></p>
+
+    </footer>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal" _msthidden="1">
+        <div class="modal-content" _msthidden="1">
+            <span class="close-modal" onclick="closeVideo()" _msttexthash="19565" _msthidden="1" _msthash="95">×</span>
+            <video id="videoPlayer" controls=""></video>
+        </div>
+    </div>
+
+    <script>
+        function openVideo(videoUrl) {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('videoPlayer');
+            video.src = videoUrl;
+            modal.classList.add('active');
+            video.play();
+        }
+
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('videoPlayer');
+            video.pause();
+            video.src = '';
+            modal.classList.remove('active');
+        }
+
+        // Close modal when clicking outside the video
+        window.onclick = function(event) {
+            const modal = document.getElementById('videoModal');
+            if (event.target === modal) {
+                closeVideo();
+            }
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation for cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .video-card, .command-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+
+
+</body></html>
