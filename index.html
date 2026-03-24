@@ -678,6 +678,7 @@ blockframe_load castle size=2</div>
             const modal = document.getElementById('videoModal');
             const video = document.getElementById('videoPlayer');
             video.src = videoUrl;
+            video.muted = true;
             modal.classList.add('active');
             video.play();
         }
@@ -687,6 +688,7 @@ blockframe_load castle size=2</div>
             const video = document.getElementById('videoPlayer');
             video.pause();
             video.src = '';
+            
             modal.classList.remove('active');
         }
 
